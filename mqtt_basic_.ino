@@ -12,7 +12,7 @@ WiFiClient wifiClient;
 MqttClient mqttClient(wifiClient);
 
 const char broker[] = "fill_name";
-int        port     = "fill_name";
+int        port     = "fill_name_as_int";
 const char topic1[] = "aitime";
 const char topic2[] = "aitemperature";
 const char topic3[] = "aihumidity";
@@ -54,7 +54,6 @@ void setup() {
 
   Serial.println("You're connected to the MQTT broker!");
   Serial.println();
-}
 }
 
 void loop() {
