@@ -3,7 +3,7 @@ import pandas as pd
 import datetime as dt
 
 NUM_OF_READINGS = 5
-MEASUREMENT_TITLES = ['aitime', 'aitemperature', 'aihumidity', 'aigas']
+MEASUREMENT_TITLES = ["aitime", "aitemperature", "aihumidity", "aigas", "aico2"]
 
 # Create filename id:
 date_now = dt.datetime.now()
@@ -26,6 +26,7 @@ for _ in range(0, (NUM_OF_READINGS+1), 1):
     measurements["temperature"] = data[1]
     measurements["humidity"] = data[2]
     measurements["gas"] = data[3]
+    measuremnents["co2"] = data[4]
 
     data_table.append(measurements)
 
