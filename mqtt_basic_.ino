@@ -4,6 +4,7 @@
 Sensor temp(SENSOR_ID_TEMP);
 Sensor humidity(SENSOR_ID_HUM);
 Sensor gas(SENSOR_ID_GAS);
+SensorBSEC bsec(SENSOR_ID_BSEC);
 
 char ssid[] = "WiFiName";
 char pass[] = "Password";
@@ -17,6 +18,7 @@ const char topic1[] = "aitime";
 const char topic2[] = "aitemperature";
 const char topic3[] = "aihumidity";
 const char topic4[] = "aigas";
+const char topic5[] = "aico2";
 
 const long interval = 5000;
 unsigned long previousMillis = 0;
@@ -30,6 +32,7 @@ void setup() {
   temp.begin();
   humidity.begin();
   gas.begin();
+  bsec.begin();
 
   Serial.print("Attempting to connect to WPA SSID: ");
   Serial.println(ssid);
@@ -70,6 +73,7 @@ void loop() {
   float dataTemp = temp.value();
   float dataH = humidity.value();
   float dataG = gas.value();
+  float dataC = bsec.co2_eq();
 
   if (currentMillis - previousMillis >= interval) {
       // save the last time a message was sent
@@ -91,6 +95,10 @@ void loop() {
     Serial.println(topic4);
     Serial.println(dataG);
 
+    Serial.print("Sending message to topic5: ");
+    Serial.println(topic5);
+    Serial.println(dataC);
+
     // send message, the Print interface can be used to set the message contents
     mqttClient.beginMessage(topic1);
     mqttClient.print(dataT);
@@ -106,6 +114,10 @@ void loop() {
 
     mqttClient.beginMessage(topic4);
     mqttClient.print(dataG);
+    mqttClient.endMessage();
+
+    mqttClient.beginMessage(topic5);
+    mqttClient.print(dataC);
     mqttClient.endMessage();
 
     Serial.println();
