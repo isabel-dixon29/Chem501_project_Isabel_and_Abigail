@@ -14,7 +14,6 @@ def dataplot(data_in, column_name, x_label, y_label):
 
     data_temperature_clean_2 = data_in[(data_in["gas_y"] > lower_bound_2) & (data_in["gas_y"] < upper_bound_2)]
     data_temperature_clean_1 = data_in[(data_in["gas_x"] > lower_bound_2) & (data_in["gas_x"] < upper_bound_2)]
-    clean_data_merged = pd.merge(data_temperature_clean_1, data_temperature_clean_2, on='reading number', how='inner')
 
     fig1, ax1 = plt.subplots()
     ax1.scatter(data_merged['reading number'], data_merged['gas_x'], label='m2n2 Data', color='#17becf')
