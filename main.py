@@ -1,7 +1,10 @@
 import paho.mqtt.subscribe as subscribe
 import pandas as pd
 import time
+import json
 from datetime import datetime
+
+from weather_api import WeatherAPI
 
 NUM_OF_READINGS = 5
 MEASUREMENT_TITLES = ['aitime', 'aitemperature', 'aihumidity', 'aigas', 'aibco2']
@@ -20,19 +23,41 @@ def get_experiment_number():
     return experiment_number
 
 
-# Create filename id:
+# Get experiment sepcs
+sensor_location = input("Location of sensor: ")
+duration_hours = int(input("Number of HOURS to collect readings: "))
+duration_sec = duration_hours * 360
+
+# Create experiment id
 date_now = datetime.now()
 date_str = date_now.strftime('%d%m%Y')
 nicla_ID = "n1"
 mkr_ID = "m1"
 exp_nr = str(get_experiment_number())
-filename_csv = mkr_ID + nicla_ID + date_str + "-" + exp_nr
+experiment_ID = mkr_ID + nicla_ID + date_str + "-" + exp_nr
+filename_csv = experiment_ID + ".csv"
 
+# create metadata
+template = {experiment_ID:{
+         "NiclaID": nicla_ID,
+         "MKRID": mkr_ID,
+         "Location": sensor_location,
+         "Date_Start": date_now.strftime('%d-%m-%Y'),
+         "Duration": duration_hours,
+         "Weather_Description": WeatherAPI.get_weather(),
+         }}
 
 topics = MEASUREMENT_TITLES
 data_table = []
+reading_nr = 0
+
+# Begin program
+input("Press [ENTER] to proceed")
+
 start_time = time.time()
-for _ in range(0, (NUM_OF_READINGS + 1), 1):
+elapsed_time = 0
+while elapsed_time < duration_sec:
+    reading_nr += 1
     data = []
     m = subscribe.simple(topics, hostname="pf-eveoxy0ua6xhtbdyohag.cedalo.cloud", retained=False, msg_count=len(topics))
     elapsed_time = time.time() - start_time
@@ -40,21 +65,38 @@ for _ in range(0, (NUM_OF_READINGS + 1), 1):
     for a in m:
             data.append(float(a.payload))
 
-    print("reading no.", _)
+    print("reading no.", reading_nr)
     print(data)
-    print(elapsed_time)
+    time_left = (duration_sec - elapsed_time)/60
+    print("time left", round(time_left, 1), "min")
 
     measurements = {}
-    measurements["time"] = round(elapsed_time, 1)
-    measurements["temperature"] = data[1]
-    measurements["humidity"] = data[2]
-    measurements["gas"] = data[3]
-    measurements["co2"] = data[4]
+    measurements["Time"] = round(elapsed_time, 1)
+    measurements["Temperature"] = data[1]
+    measurements["Humidity"] = data[2]
+    measurements["Gas"] = data[3]
+    measurements["CO2"] = data[4]
 
     data_table.append(measurements)
 
 # data_table to csv
 df = pd.DataFrame(data_table)
-df.to_csv(f"measurements/{filename_csv}.csv", index=False)
-
+df.to_csv(f"measurements/{filename_csv}", index=False)
 print("CSV file has been saved successfully.")
+
+# template to data
+new_data = template
+try:
+    with open("metadata.json", 'r') as json_file:
+        data = json.load(json_file)
+except FileNotFoundError:
+    with open("metadata.json", 'w') as json_file:
+        json.dump(new_data, json_file, indent=4)
+else:
+    data.update(new_data)
+    with open("metadata.json", "w") as json_file:
+        json.dump(data, json_file, indent=4)
+
+print("metadata has been saved successfully.")
+
+print(template)
