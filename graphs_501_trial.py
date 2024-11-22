@@ -1,6 +1,7 @@
 import matplotlib as mpl
 from pandas import read_csv
 import numpy as np
+import pandas as pd
 mpl.rcParams['axes.formatter.useoffset'] = False
 import matplotlib.pyplot as plt
 
