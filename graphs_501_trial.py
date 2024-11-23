@@ -37,8 +37,8 @@ def dataplot(data_in, column_name, x_label, y_label):
 
     plt.show()
 
-data1 = read_csv("/Users/44738/Documents/GitHub/desktop-tutorial/comp501/measurements/m2n220112024-1.csv")
-data2 = read_csv("/Users/44738/Documents/GitHub/desktop-tutorial/comp501/measurements/m1n120112024-1.csv")
+data1 = read_csv("fill_filename")
+data2 = read_csv("fill_filename")
 data_merged = pd.merge(data1, data2, on='reading number', how='inner')
 
 dataplot(data_merged, "gas", "Time (s)", "Gas (Pa)")
