@@ -1,4 +1,4 @@
-"""
+"""File that contains the method to access Open Weather app's weather data.
 
 Classes: WeatherAPI
 """
@@ -6,7 +6,9 @@ import os
 import requests
 
 class WeatherAPI:
-    """
+    """Contains methods to access Open Weather App's weather data.
+
+    Requirements: API key
 
     Methods: get_weather()
     """
