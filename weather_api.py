@@ -34,9 +34,14 @@ class WeatherAPI:
         parameters["lat"] = lat
         parameters["lon"] = lon
 
-        response = requests.get(url=WeatherAPI.API_3_HOUR_CALL, params=parameters)
-        response.raise_for_status()
-        data = response.json()
+        try:
+            response = requests.get(url=WeatherAPI.API_3_HOUR_CALL, params=parameters)
+            response.raise_for_status()
+            data = response.json()
+        except Exception as e:
+            print(f"Error when trying to access Open Weather Map, (We suggest checking your API Key).\n"
+                  f"{e}")
+            return "No data"
 
         weather_data = data['list'][0]['weather'][0]
         weather_description = weather_data['description']
