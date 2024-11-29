@@ -19,6 +19,6 @@ Python Packages: paho-mqtt, pandas, requests, sqllite
 </li>
 <li>
 Open Weather App API Key (free)
-<li>
+</li>
 </ul>
 
