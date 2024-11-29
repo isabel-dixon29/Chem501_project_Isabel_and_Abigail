@@ -1,7 +1,7 @@
 # Chem501_project_Isabel_and_Abigail
 <h1>Overview</h1>
 <p>
-Wireless measurements of air quality.
+The goal of our project is to determine how the air quality of a living space is affected by a shared kitchen. We have designed a tool to take measurements of temperature, humidity, gas, and CO2 over multiple hours in two locations. This program will automatically assign an experiment ID and create metadata for each experiment, to aid us in combining all data into an SQL database and plotting data points using matplotlib.
 </p>
 
 <h1>Description</h1>
