@@ -1,0 +1,38 @@
+{
+    "m2n227112024-2": {
+        "NiclaID": "n2",
+        "MKRID": "m2",
+        "Location": "kitchen counter",
+        "Date_Start": "27-11-2024",
+        "Time_Start": "11:45",
+        "Duration": 3,
+        "Weather_Description": "few clouds"
+    },
+    "m2n227112024-3": {
+        "NiclaID": "n2",
+        "MKRID": "m2",
+        "Location": "kitchen counter",
+        "Date_Start": "27-11-2024",
+        "Time_Start": "15:37",
+        "Duration": 1,
+        "Weather_Description": "light rain"
+    },
+    "m2n227112024-4": {
+        "NiclaID": "n2",
+        "MKRID": "m2",
+        "Location": "kitchen counter",
+        "Date_Start": "27-11-2024",
+        "Time_Start": "15:38",
+        "Duration": 1,
+        "Weather_Description": "light rain"
+    },
+    "m2n227112024-5": {
+        "NiclaID": "n2",
+        "MKRID": "m2",
+        "Location": "kitchen counter",
+        "Date_Start": "27-11-2024",
+        "Time_Start": "17:20",
+        "Duration": 1,
+        "Weather_Description": "light rain"
+    }
+}
