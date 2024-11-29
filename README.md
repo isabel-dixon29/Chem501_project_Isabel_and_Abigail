@@ -1,9 +1,9 @@
 # Chem501_project_Isabel_and_Abigail
-> **Overview**
+<h1>**Overview**</h>
 Wireless measurements of air quality.
 
 
-Description
+**Description**
 Program to measure the air quality in an environment wirelessly: Use of Arduino Nicla sense me Sensor (& BSEC Sensor) and MKR to measure 1 reading per second of four values, temperature, humidity, gas, and CO2. Python file is used to collect measured values for initial storage in CSV file, metadata is created automatically and stored in a json file.
 
 
