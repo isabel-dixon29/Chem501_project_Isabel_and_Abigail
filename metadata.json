@@ -1,0 +1,47 @@
+{
+    "m1n123112024-21": {
+        "NiclaID": "n1",
+        "MKRID": "m1",
+        "Location": "Window",
+        "Date_Start": "23-11-2024",
+        "Time_Start": "11:42",
+        "Duration": 10,
+        "Weather_Description": "broken clouds"
+    },
+    "m1n123112024-22": {
+        "NiclaID": "n1",
+        "MKRID": "m1",
+        "Location": "Kitchen Window",
+        "Date_Start": "23-11-2024",
+        "Time_Start": "11:42",
+        "Duration": 0.8,
+        "Weather_Description": "broken clouds"
+    },
+    "m1n123112024-23": {
+        "NiclaID": "n1",
+        "MKRID": "m1",
+        "Location": "Kitchen Window",
+        "Date_Start": "23-11-2024",
+        "Time_Start": "13:16",
+        "Duration": 6,
+        "Weather_Description": "broken clouds"
+    },
+    "m1n127112024-24": {
+        "NiclaID": "n1",
+        "MKRID": "m1",
+        "Location": "Kitchen Window",
+        "Date_Start": "27-11-2024",
+        "Time_Start": "11:42",
+        "Duration": 3,
+        "Weather_Description": "few clouds"
+    },
+    "m1n127112024-27": {
+        "NiclaID": "n1",
+        "MKRID": "m1",
+        "Location": "Kitchen Window",
+        "Date_Start": "27-11-2024",
+        "Time_Start": "15:39",
+        "Duration": 1,
+        "Weather_Description": "light rain"
+    }
+}
