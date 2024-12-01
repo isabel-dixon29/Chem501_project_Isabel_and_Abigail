@@ -5,6 +5,7 @@ import json
 from datetime import datetime
 
 from weather_api import WeatherAPI
+from edit_metadata import MetadataInterface
 
 
 NUM_OF_READINGS = 5
@@ -51,19 +52,7 @@ template = {experiment_ID:{
          }}
 
 # template to data
-new_data = template
-try:
-    with open("metadata.json", 'r') as json_file:
-        data = json.load(json_file)
-except FileNotFoundError:
-    with open("metadata.json", 'w') as json_file:
-        json.dump(new_data, json_file, indent=4)
-else:
-    data.update(new_data)
-    with open("metadata.json", "w") as json_file:
-        json.dump(data, json_file, indent=4)
-
-print("metadata has been saved successfully.")
+MetadataInterface().save_metadata(metadata=template)
 
 topics = MEASUREMENT_TITLES
 data_table = []
