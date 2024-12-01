@@ -13,9 +13,14 @@ Program to measure the air quality in an environment wirelessly: Use of Arduino 
 <ul>
 <li>Arduino sensors: Nicla Sense Me, and MKR WIFI 1010
 </li>
-<li>Python Packages: paho-mqtt, pandas, requests, sqllite
+<li>Python Packages: paho-mqtt, pandas, requests, sqllite, tkinter
 </li>
 <li>Open Weather App API Key (free)
 </li>
 </ul>
+
+<h1>What's New</h1>
+<p>
+We have now added a module (edit_metadata.py) that allows users to search, update, & save metadata of an completed experiment using the experiment ID with a GUI!
+</p>
 
