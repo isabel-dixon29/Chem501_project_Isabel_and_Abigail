@@ -34,5 +34,23 @@
         "Time_Start": "17:20",
         "Duration": 1,
         "Weather_Description": "light rain"
+    },
+        "m2n203122024-6": {
+        "NiclaID": "n2",
+        "MKRID": "m2",
+        "Location": "kitchen counter",
+        "Date_Start": "03-12-2024",
+        "Time_Start": "09:51",
+        "Duration": 12,
+        "Weather_Description": "few clouds"
+    },
+    "m2n203122024-7": {
+        "NiclaID": "n2",
+        "MKRID": "m2",
+        "Location": "kitchen sensor",
+        "Date_Start": "03-12-2024",
+        "Time_Start": "09:56",
+        "Duration": 12,
+        "Weather_Description": "few clouds"
     }
 }
