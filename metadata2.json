@@ -43,5 +43,14 @@
         "Time_Start": "15:39",
         "Duration": 1,
         "Weather_Description": "light rain"
+    },
+    "m1n103122024-28": {
+        "NiclaID": "n1",
+        "MKRID": "m1",
+        "Location": "Kitchen Window",
+        "Date_Start": "03-12-2024",
+        "Time_Start": "09:58",
+        "Duration": 12,
+        "Weather_Description": "few clouds"
     }
 }
