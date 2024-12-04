@@ -25,13 +25,13 @@ def dataplot(data_in1, data_in2, column_name, x_label, y_label):
     plt.savefig(filename, dpi=200, bbox_inches='tight')
 
     fig2, ax2 = plt.subplots()
-    # # ax2 = fig.add_subplot(122)
-    # ax2.scatter(data_temperature_clean_2["reading number"], data_temperature_clean_2['gas_y'], label='m1n1 Data', color="#9467bd")
     ax2.scatter(data_temperature_clean_1["Time"], data_temperature_clean_1[column_name], label='m2n2 Data', color="#e377c2")
     ax2.scatter(data_temperature_clean_2["Time"], data_temperature_clean_2[column_name], label="m1n1 Data", color="#ff7f0e")
     ax2.set_xlabel(x_label)
     ax2.set_ylabel(y_label)
     ax2.set_title(f'Clean Data of {y_label}')
+    if column_name == "CO2":
+        ax2.set_ylim(0, 4000)
     filename = f'date-{column_name}-clean.png'
     plt.legend()
     plt.savefig(filename, dpi=200, bbox_inches='tight')
@@ -41,6 +41,7 @@ def dataplot(data_in1, data_in2, column_name, x_label, y_label):
 data1 = read_csv("fill_in_csv_route")
 data2 = read_csv("fill_in_csv_route")
 
-dataplot(data1, data2, "Gas", "Time (s)", "Gas (Pa)")
+dataplot(data1, data2, "Gas", "Time (s)", "Gas")
 dataplot(data1, data2,  "Humidity", "Time (s)", "Humidity")
 dataplot(data1, data2, "Temperature", "Time (s)", "Temperature (C)")
+dataplot(data1, data2, "CO2", "Time (s)", "CO2")
