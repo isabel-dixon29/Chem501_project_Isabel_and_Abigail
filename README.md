@@ -13,7 +13,7 @@ Program to measure the air quality in an environment wirelessly: Use of Arduino 
 <ul>
 <li>Arduino sensors: Nicla Sense Me, and MKR WIFI 1010
 </li>
-<li>Python Packages: paho-mqtt, pandas, requests, sqllite, tkinter
+<li>Python Packages: paho-mqtt, pandas, requests, sqllite, tkinter, numpy, matplotlib
 </li>
 <li>Open Weather App API Key (free)
 </li>
