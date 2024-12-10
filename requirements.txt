@@ -1,0 +1,7 @@
+paho
+requests
+pandas
+matplotlib
+sqlite3
+tkinter
+numpy
