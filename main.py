@@ -1,20 +1,20 @@
-"""Main file: Run to begin new experiment for collecting Temperature, humidity, gas, & CO2 readings.
-Will save metadata & measured readings automatically.
+"""Main file: 
+Run to begin new experiment for collecting Temperature, humidity, gas, & CO2 readings.
 
-Terminal Inputs Required: Location of sensor (str), Duration of experiment in hours (int),
- & ENTER to proceed."""
+Will save metadata & measured readings automatically."""
 
 import paho.mqtt.subscribe as subscribe
 import pandas as pd
 import time
-import json
 from datetime import datetime
 
 from weather_api import WeatherAPI
 from edit_metadata import MetadataInterface
+from measurement_GUI import MeasurementInterface
 
 
 MEASUREMENT_TITLES = ['aitemperature', 'aihumidity', 'aigas', 'aibco2']
+HOSTNAME = "hostname.cloud"
 
 
 def get_experiment_number():
@@ -36,9 +36,14 @@ def get_experiment_number():
 
 
 # Get experiment sepcs
-sensor_location = input("Location of sensor: ")
-duration_hours = int(input("Number of HOURS to collect readings: "))
-duration_sec = duration_hours * 3600
+new_experiment = MeasurementInterface()
+sensor_location = new_experiment.location
+try:
+    duration_hours = int(new_experiment.duration)
+except ValueError:
+    raise ValueError("Invalid Duration, must input an integer")
+else:
+    duration_sec = duration_hours * 3600
 
 # Create experiment id
 date_now = datetime.now()
@@ -51,32 +56,31 @@ filename_csv = experiment_ID + ".csv"
 
 # create metadata
 template = {experiment_ID:{
-         "NiclaID": nicla_ID,
-         "MKRID": mkr_ID,
-         "Location": sensor_location,
-         "Date_Start": date_now.strftime('%d-%m-%Y'),
-         "Time_Start": date_now.strftime('%H:%M'),
-         "Duration": duration_hours,
-         "Weather_Description": WeatherAPI.get_weather(),
-         }}
+        "NiclaID": nicla_ID,
+        "MKRID": mkr_ID,
+        "Location": sensor_location,
+        "Date_Start": date_now.strftime('%d-%m-%Y'),
+        "Time_Start": date_now.strftime('%H:%M'),
+        "Duration": duration_hours,
+        "Weather_Description": WeatherAPI.get_weather(),
+        }}
 
-# template to data
-MetadataInterface().save_metadata(metadata=template)
+# save metadata
+MetadataInterface().save_metadata(metadata=template, ID=experiment_ID)
 
 topics = MEASUREMENT_TITLES
 data_table = []
 reading_nr = 0
-
-# Begin program
-input("Press [ENTER] to proceed")
-
 start_time = time.time()
 elapsed_time = 0
+
+# While loop to collect readings for duration
 while elapsed_time < duration_sec:
     try:
         reading_nr += 1
         data = []
-        m = subscribe.simple(topics, hostname="pf-eveoxy0ua6xhtbdyohag.cedalo.cloud", retained=False, msg_count=len(topics))
+
+        m = subscribe.simple(topics, hostname=HOSTNAME, retained=False, msg_count=len(topics))
         elapsed_time = time.time() - start_time
 
         for a in m:
@@ -93,7 +97,6 @@ while elapsed_time < duration_sec:
         measurements["Humidity"] = data[1]
         measurements["Gas"] = data[2]
         measurements["CO2"] = data[3]
-
         data_table.append(measurements)
 
     except Exception as e:
@@ -105,8 +108,7 @@ while elapsed_time < duration_sec:
         # Print error message
         print(f"\n{e}\n")
 
-
 # data_table to csv
 df = pd.DataFrame(data_table)
 df.to_csv(f"measurements/{filename_csv}", index=False)
-print("CSV file has been saved successfully.")
+new_experiment.save_popup(ID=experiment_ID)
