@@ -5,6 +5,11 @@ mpl.rcParams['axes.formatter.useoffset'] = False
 import matplotlib.pyplot as plt
 
 def dataplot(data_in1, data_in2, column_name, x_label, y_label):
+    """This function creates three sets of graphs:
+        - One graph is made from the raw data submitted.
+        - The first graph is cleaned and a new graph is made from the cleaned data.
+        - The origional raw data has rolling averages calculated for it and new graphs are made from this.
+    """
 
     lower_bound_1 = data_in1[column_name].quantile(0.0001)
     upper_bound_1 = data_in1[column_name].quantile(0.9999)
