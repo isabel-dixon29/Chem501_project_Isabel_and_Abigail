@@ -6,6 +6,9 @@ mpl.rcParams['axes.formatter.useoffset'] = False
 import matplotlib.pyplot as plt
 
 def dataplot(data_in, column_name, x_label, y_label):
+    """This function creates graphs from the raw data submitted and a graphs from the data when it is cleaned.
+
+    This function is made for the trial data that is submitted to test code."""
 
     lower_bound_2 = data_in['gas_y'].quantile(0.0001)
     upper_bound_2 = data_in['gas_y'].quantile(0.9999)
