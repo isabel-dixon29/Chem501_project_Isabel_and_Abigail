@@ -21,6 +21,13 @@ Program to measure the air quality in an environment wirelessly: Use of Arduino 
 
 <h1>What's New</h1>
 <p>
+  <strong>Sun</strong> 01.12.2024
+  <br/>
 We have now added a module (edit_metadata.py) that allows users to search, update, & save metadata of a completed experiment using the experiment ID with a GUI!
+  <br/>
+  
+  <strong>Tue</strong> 10.12.2024
+  <br/>
+
 </p>
 
