@@ -1,3 +1,5 @@
+"""Main file: Run to begin new experiment for collecting Temperature, humidity, gas, & CO2 readings."""
+
 import paho.mqtt.subscribe as subscribe
 import pandas as pd
 import time
@@ -9,7 +11,7 @@ from edit_metadata import MetadataInterface
 
 
 NUM_OF_READINGS = 5
-MEASUREMENT_TITLES = ['aitime', 'aitemperature', 'aihumidity', 'aigas', 'aibco2']
+MEASUREMENT_TITLES = ['aitemperature', 'aihumidity', 'aigas', 'aibco2']
 
 
 def get_experiment_number():
@@ -80,10 +82,10 @@ while elapsed_time < duration_sec:
 
         measurements = {}
         measurements["Time"] = round(elapsed_time, 1)
-        measurements["Temperature"] = data[1]
-        measurements["Humidity"] = data[2]
-        measurements["Gas"] = data[3]
-        measurements["CO2"] = data[4]
+        measurements["Temperature"] = data[0]
+        measurements["Humidity"] = data[1]
+        measurements["Gas"] = data[2]
+        measurements["CO2"] = data[3]
 
         data_table.append(measurements)
 
