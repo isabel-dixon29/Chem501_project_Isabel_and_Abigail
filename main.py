@@ -10,7 +10,6 @@ from weather_api import WeatherAPI
 from edit_metadata import MetadataInterface
 
 
-NUM_OF_READINGS = 5
 MEASUREMENT_TITLES = ['aitemperature', 'aihumidity', 'aigas', 'aibco2']
 
 
