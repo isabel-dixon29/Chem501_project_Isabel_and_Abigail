@@ -1,4 +1,8 @@
-"""Main file: Run to begin new experiment for collecting Temperature, humidity, gas, & CO2 readings."""
+"""Main file: Run to begin new experiment for collecting Temperature, humidity, gas, & CO2 readings.
+Will save metadata & measured readings automatically.
+
+Terminal Inputs Required: Location of sensor (str), Duration of experiment in hours (int),
+ & ENTER to proceed."""
 
 import paho.mqtt.subscribe as subscribe
 import pandas as pd
@@ -14,6 +18,10 @@ MEASUREMENT_TITLES = ['aitemperature', 'aihumidity', 'aigas', 'aibco2']
 
 
 def get_experiment_number():
+    """Assigns an experiment number to a new experiment. Uses 'experiment_nr.txt'
+    file to keep a updated record of the current number of experiments.
+    
+    Returns: experiment number (int)"""
     try:
         # Try to open the file and read the current experiment number
         with open(file="experiment_nr.txt", mode='r') as file:
