@@ -28,6 +28,7 @@ We have now added a module (edit_metadata.py) that allows users to search, updat
   
   <strong>Tue</strong> 10.12.2024
   <br/>
+We have updated main.py & added a new module (measurement_GUI.py) fully implement a Graphical User Interface. Users are now able to input the specs of their new experiment into entry boxes of the new GUI window when running the main.py file.
 
 </p>
 
